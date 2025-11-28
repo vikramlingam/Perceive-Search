@@ -28,7 +28,7 @@ Follow these steps to set up Perceive Search on your own system.
 First, download the code to your machine:
 
 ```bash
-git clone https://github.com/yourusername/perceive-search.git
+git clone git clone https://github.com/yourusername/perceive-search.git
 cd perceive-search
 ```
 
