@@ -4,7 +4,7 @@
 
 Perceive Search proxies Google/Bing results (ad/tracker-free) + generates concise AI insights for queries. Fully self-hosted, lightweight, and offline-capable after setup.
 
-<img width="1723" height="1060" alt="image" src="https://github.com/user-attachments/assets/7f5d8bf8-c3e5-4212-80f5-308ef9d5aebb" />
+/Users/vikramlingam/Desktop/ezgif-78d8fa326aab7b0c.gif
 
 ## How It's Done
 
@@ -15,6 +15,8 @@ This project is built by forking the original [Whoogle Search](https://github.co
 1.  **Search Proxy**: When you search, the backend (Python/Flask) fetches results from Google without passing your personal data (IP, cookies, etc.).
 2.  **AI Summarization**: The top search results are fed into the local Qwen2.5 model running on your CPU. The model reads the snippets and generates a concise answer to your query.
 3.  **Modern UI**: A custom React frontend displays the results and the AI summary in a clean, "Perceive" themed interface.
+
+<img width="1723" height="1060" alt="image" src="https://github.com/user-attachments/assets/7f5d8bf8-c3e5-4212-80f5-308ef9d5aebb" />
 
 ## Installation
 
