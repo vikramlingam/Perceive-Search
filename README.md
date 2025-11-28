@@ -4,7 +4,7 @@
 
 Perceive Search proxies Google/Bing results (ad/tracker-free) + generates concise AI insights for queries. Fully self-hosted, lightweight, and offline-capable after setup.
 
-/Users/vikramlingam/Desktop/ezgif-78d8fa326aab7b0c.gif
+![ezgif-78d8fa326aab7b0c](https://github.com/user-attachments/assets/0bcfa42f-1a8d-4534-90d3-9dcb52d85c75)
 
 ## How It's Done
 
