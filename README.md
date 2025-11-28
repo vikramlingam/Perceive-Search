@@ -4,6 +4,8 @@
 
 Perceive Search proxies Google/Bing results (ad/tracker-free) + generates concise AI insights for queries. Fully self-hosted, lightweight, and offline-capable after setup.
 
+<img width="1723" height="1060" alt="image" src="https://github.com/user-attachments/assets/7f5d8bf8-c3e5-4212-80f5-308ef9d5aebb" />
+
 ## How It's Done
 
 This project is built by forking the original [Whoogle Search](https://github.com/benbusby/whoogle-search) code and enhancing it with modern AI capabilities. I kept the privacy-focused core of Whoogle but added a lightweight open-source Large Language Model (LLM) **Qwen2.5-0.5B-Instruct**.
