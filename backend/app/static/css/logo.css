@@ -1,0 +1,18 @@
+.cls-1 {
+    fill: transparent;
+}
+
+svg {
+    height: inherit;
+}
+
+a {
+    height: inherit;
+}
+
+@media (max-width: 1000px) {
+    svg {
+        margin-top: .3em;
+        height: 70%;
+    }
+}

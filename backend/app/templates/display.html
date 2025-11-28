@@ -1,0 +1,58 @@
+<html>
+<head>
+    <link rel="shortcut icon" href="static/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="static/img/favicon.ico" type="image/x-icon">
+    {% if not search_type %}
+        <link rel="search" href="opensearch.xml" type="application/opensearchdescription+xml" title="Whoogle Search">
+    {% else %}
+        <link rel="search" href="opensearch.xml?tbm={{ search_type }}" type="application/opensearchdescription+xml" title="Whoogle Search ({{ search_name }})">
+    {% endif %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    {% if bundle_static() %}
+        <link rel="stylesheet" href="/{{ cb_url('bundle.css') }}">
+    {% else %}
+        <link rel="stylesheet" href="{{ cb_url('logo.css') }}">
+        <link rel="stylesheet" href="{{ cb_url('input.css') }}">
+        <link rel="stylesheet" href="{{ cb_url('search.css') }}">
+        <link rel="stylesheet" href="{{ cb_url('header.css') }}">
+    {% endif %}
+    {% if config.theme %}
+        {% if config.theme == 'system' %}
+            <style>
+                @import "{{ cb_url('light-theme.css') }}" screen;
+                @import "{{ cb_url('dark-theme.css') }}" screen and (prefers-color-scheme: dark);
+            </style>
+        {% else %}
+            <link rel="stylesheet" href="{{ cb_url(config.theme + '-theme.css') }}"/>
+        {% endif %}
+    {% endif %}
+    {% if config.style %}
+        <style>
+            {{ config.style }}
+        </style>
+    {% endif %}
+    <title>{{ clean_query(query) }} - Whoogle Search</title>
+</head>
+<body>
+{{ search_header|safe }}
+{% if is_translation %}
+    <iframe
+            id="lingva-iframe"
+            src="{{ lingva_url }}/auto/{{ translate_to }}/{{ translate_str }}">
+    </iframe>
+{% endif %}
+{{ response|safe }}
+</body>
+{% include 'footer.html' %}
+{% if bundle_static() %}
+    <script src="/{{ cb_url('bundle.js') }}" defer></script>
+{% else %}
+    {% if autocomplete_enabled == '1' %}
+        <script src="{{ cb_url('autocomplete.js') }}"></script>
+    {% endif %}
+    <script src="{{ cb_url('utils.js') }}"></script>
+    <script src="{{ cb_url('keyboard.js') }}"></script>
+    <script src="{{ cb_url('currency.js') }}"></script>
+{% endif %}
+</html>

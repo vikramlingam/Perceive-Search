@@ -1,0 +1,162 @@
+{% if mobile %}
+    <header>
+        <div class="header-div">
+            <form class="search-form header"
+                  id="search-form"
+                  method="{{ 'GET' if config.get_only else 'POST' }}">
+                <a class="logo-link mobile-logo" href="{{ home_url }}">
+                    <div id="mobile-header-logo">
+                        {{ logo|safe }}
+                    </div>
+                </a>
+                <div class="H0PQec mobile-input-div">
+                    <div class="autocomplete-mobile esbc autocomplete">
+                        {% if config.preferences %}
+                            <input type="hidden" name="preferences" value="{{ config.preferences }}" />
+                        {% endif %}
+                        <input
+                                id="search-bar"
+                                class="mobile-search-bar"
+                                autocapitalize="none"
+                                autocomplete="off"
+                                autocorrect="off"
+                                spellcheck="false"
+                                class="search-bar-input"
+                                name="q"
+                                type="text"
+                                value="{{ clean_query(query) }}"
+                                dir="auto">
+                        <input id="search-reset" type="reset" value="x">
+                        <input name="tbm" value="{{ search_type }}" style="display: none">
+                        <input name="country" value="{{ config.country }}" style="display: none;">
+                        <input type="submit" style="display: none;">
+                        <div class="sc"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+      <div>
+        <div class="header-tab-div">
+            <div class="header-tab-div-2">
+                <div class="header-tab-div-3">
+                    <div class="mobile-header header-tab">
+                        {% for tab_id, tab_content in tabs.items() %}
+                            {% if tab_content['selected'] %}
+                                <span class="mobile-tab-span">{{ tab_content['name'] }}</span>
+                            {% else %}
+                                <a class="header-tab-a" href="{{ tab_content['href'] }}">{{ tab_content['name'] }}</a>
+                            {% endif %}
+                        {% endfor %}
+                      <label for="adv-search-toggle" id="adv-search-label" class="adv-search">⚙</label>
+                      <input id="adv-search-toggle" type="checkbox">
+                        <div class="header-tab-div-end"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="" id="s">
+      </div>
+    </header>
+{% else %}
+    <header>
+        <div class="logo-div">
+            <a class="logo-link" href="{{ home_url }}">
+                <div class="desktop-header-logo">
+                    {{ logo|safe }}
+                </div>
+            </a>
+        </div>
+        <div class="search-div">
+            <form id="search-form"
+                  class="search-form"
+                  id="sf"
+                  method="{{ 'GET' if config.get_only else 'POST' }}">
+                <div class="autocomplete header-autocomplete">
+                    <div style="width: 100%; display: flex">
+                        {% if config.preferences %}
+                            <input type="hidden" name="preferences" value="{{ config.preferences }}" />
+                        {% endif %}
+                        <input
+                                id="search-bar"
+                                autocapitalize="none"
+                                autocomplete="off"
+                                autocorrect="off"
+                                class="search-bar-desktop search-bar-input"
+                                name="q"
+                                spellcheck="false"
+                                type="text"
+                                value="{{ clean_query(query) }}"
+                                dir="auto">
+                        <input name="tbm" value="{{ search_type }}" style="display: none">
+                        <input name="country" value="{{ config.country }}" style="display: none;">
+                        <input name="tbs" value="{{ config.tbs }}" style="display: none;">
+                        <input type="submit" style="display: none;">
+                        <div class="sc"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </header>
+    <div>
+      <div class="header-tab-div">
+          <div class="header-tab-div-2">
+              <div class="header-tab-div-3">
+                  <div class="desktop-header header-tab">
+                      {% for tab_id, tab_content in tabs.items() %}
+                          {% if tab_content['selected'] %}
+                              <span class="header-tab-span">{{ tab_content['name'] }}</span>
+                          {% else %}
+                              <a class="header-tab-a" href="{{ tab_content['href'] }}">{{ tab_content['name'] }}</a>
+                          {% endif %}
+                      {% endfor %}
+                      <label for="adv-search-toggle" id="adv-search-label" class="adv-search">⚙</label>
+                      <input id="adv-search-toggle" type="checkbox">
+                      <div class="header-tab-div-end"></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="" id="s">
+  </div>
+{% endif %}
+<div class="result-collapsible" id="adv-search-div">
+    <div class="result-config">
+        <label for="config-country">{{ translation['config-country'] }}: </label>
+        <select name="country" id="result-country">
+            {% for country in countries %}
+                <option value="{{ country.value }}"
+                    {% if (
+                        config.country != '' and config.country in country.value
+                    ) or (
+                        config.country == '' and country.value == '')
+                    %}
+                    selected
+                    {% endif %}>
+                    {{ country.name }}
+                </option>
+            {% endfor %}
+        </select>
+        <br />
+        <label for="config-time-period">{{ translation['config-time-period'] }}: </label>
+        <select name="tbs" id="result-time-period">
+            {% for time_period in time_periods %}
+                <option value="{{ time_period.value }}"
+                        {% if (
+                            config.tbs != '' and config.tbs in time_period.value
+                        ) or (
+                            config.tbs == '' and time_period.value == '')
+                        %}
+                        selected
+                        {% endif %}>
+                {{ translation[time_period.value] }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+</div>
+
+{% if bundle_static() %}
+<script src="/{{ cb_url('bundle.js') }}" defer></script>
+{% else %}
+<script type="text/javascript" src="{{ cb_url('header.js') }}"></script>
+{% endif %}
